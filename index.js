@@ -1,23 +1,21 @@
-const express = require('express');
-const bodyParser = require('body-parser');
+const express = require("express");
+const bodyParser = require("body-parser");
 
-const apiRouter = require('./routes/api');
+const apiRouter = require("./routes/api");
 
 const app = express();
 
-//require('./db');
+// require('./db');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.get("/", () => {
+  console.log("Hola Mundo");
+});
 
-app.get('/', (req, res) => {
-    console.log("Hola Mundo");
-})
-
-app.use('/api', apiRouter);
-
+app.use("/api", apiRouter);
 
 app.listen(3000, () => {
-    console.log('Servidor Arrancado');
-})
+  console.log("Servidor Arrancado");
+});
