@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 
 const apiRouter = require("./routes/api");
+const res = require("express/lib/response");
 
 const app = express();
 
@@ -10,8 +11,9 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get("/", () => {
-  console.log("Hola Mundo");
+app.use("/static", express.static("public"));
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/public/index.html");
 });
 
 app.use("/api", apiRouter);
